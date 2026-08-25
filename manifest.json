@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.63",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.63(8点就绪·6/20)· 包托办科技出品",
+  "version": "21.0.64",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.64(微调·7/20)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
