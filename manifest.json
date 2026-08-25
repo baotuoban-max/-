@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.56",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.56(目标5/12·性能收敛)· 包托办科技出品",
+  "version": "21.0.57",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.57(显性Apple液态)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 · Apple工业"
+    "default_title": "V21 Apple液态 57"
   },
   "background": {
     "service_worker": "background.js"
