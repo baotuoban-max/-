@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.58",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.58(正式库·液态玻璃顶级重构)· 包托办科技出品",
+  "version": "21.0.59",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.59(可见液态横幅·正式库)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 58 正式·液态"
+    "default_title": "V21 59 正式液态"
   },
   "background": {
     "service_worker": "background.js"
