@@ -293,5 +293,62 @@ setTimeout(function(){
 },800);
 </script>
 
+
+<style id="force-apple-final">
+:root{--bg:#f5f5f7!important;--card:rgba(255,255,255,0.72)!important;--bd:rgba(0,0,0,0.08)!important}
+html,body{background:#f5f5f7!important}
+.sec,.tk-card,.log-panel,.stats .stat,.actions .act,.utility-action,.sts,.task-focus,.prog,.hdr{
+  background:rgba(255,255,255,0.72)!important;
+  backdrop-filter:blur(20px) saturate(180%)!important;
+  -webkit-backdrop-filter:blur(20px) saturate(180%)!important;
+  border:1px solid rgba(255,255,255,0.9)!important;
+  box-shadow:0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1)!important;
+}
+.hdr-ico{background:#1d1d1f!important}
+.tk-dots:empty::after{display:none!important}
+</style>
+<script id="force-tracker-fix">
+(function(){
+  function fix(){
+    try{
+      // force clear stale tracker if not 19
+      var need=false;
+      try{
+        var ls=JSON.parse(localStorage.getItem('dgj_trackerBackup')||'{}');
+        if(ls.data && Object.keys(ls.data).length!==19) need=true;
+        if(!ls.data || Object.keys(ls.data).length===0) need=true;
+      }catch(e){need=true}
+      if(need){
+        localStorage.removeItem('dgj_trackerBackup');
+        if(window.chrome && chrome.storage && chrome.storage.local) chrome.storage.local.remove('extractionTracker', function(){ console.log('[force] cleared stale tracker'); });
+      }
+      // ensure tkDots rendered - if empty after 1s, force render with empty 19
+      setTimeout(function(){
+        var el=document.getElementById('tkDots');
+        if(el && (!el.innerHTML.trim() || el.innerHTML.indexOf('加载中')>=0)){
+          // try call tkRender if exists
+          if(window.tkRender) try{window.tkRender();}catch(e){}
+          // fallback: build 19 dots manually
+          if(el && (!el.innerHTML.trim() || el.innerHTML.indexOf('加载中')>=0)){
+            var html='';
+            var accounts=[{tail:'5820',name:'主账号',plats:['微信小店']},{tail:'7205',name:'豆子',plats:['拼多多','京东','淘宝','抖音一区','抖音二区','快手小店','快手小店二区','微信小店','微信小店二区']},{tail:'7207',name:'A售后',plats:['拼多多','京东','淘宝','抖音一区','抖音二区','快手小店','快手小店二区','微信小店','微信小店二区']}];
+            accounts.forEach(function(a){
+              html+='<div class="tk-dot-col"><div class="tk-dot-col-label">'+a.tail+'</div>';
+              a.plats.forEach(function(pl){ html+='<div class="tk-dot-item wait"><span class="pip-dot" style="background:#cbd5e1"></span>'+pl+'</div>'; });
+              html+='</div>';
+            });
+            el.innerHTML=html;
+            var s=document.getElementById('tkSummary'); if(s) s.textContent='今日 19 区 · 待开始';
+            var st=document.getElementById('tkCardState'); if(st) st.textContent='待执行';
+            console.log('[force] injected 19 dots');
+          }
+        }
+      },900);
+    }catch(e){console.log(e)}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', fix); else fix();
+})();
+</script>
+
 </body>
 </html>
