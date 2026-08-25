@@ -5523,7 +5523,7 @@ function selectVectorCandidatesByIndex(source, idx, allCandidates) {
 // ===== V20.29.0: 合并组安全校验 =====
 // 新记录加入组前，必须与组内每一个成员（而非仅锚点）通过严格证据校验，
 // 防止传递链把不同产品逐步并入同一组。
-// V21.0.40: 指纹优先 — 若双方指纹均存在且不同，直接拒合
+// V21.0.41: 指纹优先 — 若双方指纹均存在且不同，直接拒合
 function strictMergeEvidence(titleA, specA, titleB, specB) {
   if (!titleA || !titleB) return false;
   var ta = norm(titleA), tb = norm(titleB);
@@ -5743,7 +5743,7 @@ function familyThreshAdj(cat){ return FAMILY_THRESH_ADJ[cat]||0; }
       return {score:0, approved:false, stage:'SPEC_JACCARD_MISMATCH', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, familyConflict:false, modelConflict:false};
     }
   }
-  // V21.0.40: 图片URL 域不一致时需更强标题证据
+  // V21.0.41: 图片URL 域不一致时需更强标题证据
   if (a && b && a.title && b.title) {
     var imgA=(a.img||a.image||''), imgB=(b.img||b.image||'');
     if (imgA && imgB && String(imgA).slice(0,8)==='https://' && String(imgB).slice(0,8)==='https://') {
@@ -5781,7 +5781,7 @@ var lengthRatio = Math.min(t1.length, t2.length) / Math.max(t1.length, t2.length
     approved = true;
     stage = 'TITLE_SPEC_VECTOR';
   }
-  // V21.0.40: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
+  // V21.0.41: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
   if (!approved && titleScore >= 0.88 && titleScore < 0.94 && specScore >= 0.18 && lengthRatio >= 0.60) {
     return {score: (titleScore*0.64+specScore*0.36), approved:false, stage:'PENDING_REVIEW', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, pending:true};
   }
@@ -7775,7 +7775,7 @@ function syncToProcurement(options) {
             L('  标准标题/运营尾缀: '
               + updates.filter(function(u){return u.matchType==='TITLE'}).length, 'i');
             if (typeof pendingReviewQueue === 'undefined') var pendingReviewQueue=[];
-            // V21.0.40: 收集 PENDING_REVIEW 入待确认
+            // V21.0.41: 收集 PENDING_REVIEW 入待确认
             try { if(best && best.decision && best.decision.pending){ pendingReviewQueue.push({a:a,b:b,score:best.decision.score}); } } catch(e){}
             L('  智能向量合并（全量分组计算）: ' + vectorMatchCount + ' 条', vectorMatchCount ? 'ok' : 'i');
             if (vectorMatchCount) {
