@@ -5764,7 +5764,7 @@ function procurementVectorScore(a, b, corpusStats) {
     approved = true;
     stage = 'TITLE_SPEC_VECTOR';
   }
-  // V21.0.31: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
+  // V21.0.32: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
   if (!approved && titleScore >= 0.88 && titleScore < 0.94 && specScore >= 0.18 && lengthRatio >= 0.60) {
     return {score: (titleScore*0.64+specScore*0.36), approved:false, stage:'PENDING_REVIEW', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, pending:true};
   }
@@ -7758,7 +7758,7 @@ function syncToProcurement(options) {
             L('  标准标题/运营尾缀: '
               + updates.filter(function(u){return u.matchType==='TITLE'}).length, 'i');
             if (typeof pendingReviewQueue === 'undefined') var pendingReviewQueue=[];
-            // V21.0.31: 收集 PENDING_REVIEW 入待确认
+            // V21.0.32: 收集 PENDING_REVIEW 入待确认
             try { if(best && best.decision && best.decision.pending){ pendingReviewQueue.push({a:a,b:b,score:best.decision.score}); } } catch(e){}
             L('  智能向量合并（全量分组计算）: ' + vectorMatchCount + ' 条', vectorMatchCount ? 'ok' : 'i');
             if (vectorMatchCount) {

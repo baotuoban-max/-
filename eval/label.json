@@ -1,0 +1,26 @@
+[
+  {
+    "titleA": "TPE手套 100只装 红色",
+    "specA": "红色;100",
+    "titleB": "一次性PVC手套 100只装 蓝色",
+    "specB": "蓝色;100",
+    "label": 0,
+    "note": "family glove but material different -> should not merge"
+  },
+  {
+    "titleA": "强力双面胶 12个装",
+    "specA": "12个装;12",
+    "titleB": "强力双面胶 6个装",
+    "specB": "6个装;6",
+    "label": 1,
+    "note": "same product different pack -> merge"
+  },
+  {
+    "titleA": "收纳袋 真空压缩袋 5件套",
+    "specA": "5件套;5",
+    "titleB": "收纳袋 衣物收纳箱",
+    "specB": "收纳箱;1",
+    "label": 0,
+    "note": "category conflict storage_general vs shoe_storage"
+  }
+]
