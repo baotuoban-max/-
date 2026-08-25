@@ -7,7 +7,7 @@ const background = fs.readFileSync(new URL('../background.js', import.meta.url),
 const panel = fs.readFileSync(new URL('../panel.html', import.meta.url), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(new URL('../manifest.json', import.meta.url), 'utf8'));
 
-assert.equal(manifest.version, '21.0.47');
+assert.equal(manifest.version, '21.0.48');
 assert.match(panel, /<script src="automation\.js"><\/script>/);
 assert.match(panel, /id="automationRunMorning"/);
 assert.match(panel, /id="automationDryRun"/);
@@ -18,7 +18,7 @@ assert.match(panel, /id="automationEnsureToday"/);
 assert.match(panel, /id="automationDailyProgress"/);
 
 assert.match(sidepanel, /jobId: businessDate \+ ':morning:' \+ acct\.tail \+ ':' \+ plat/);
-assert.match(sidepanel, /今日 14 项没有待执行任务，不会重复抓取/);
+assert.match(sidepanel, /今日 19 项没有待执行任务，不会重复抓取/);
 assert.match(sidepanel, /task\.status === 'running'\) \{\s*task\.status = 'pending'/);
 assert.match(sidepanel, /task\.retries = \(task\.retries \|\| 0\) \+ 1/);
 assert.match(sidepanel, /附件进入后台队列:/);
