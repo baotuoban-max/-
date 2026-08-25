@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "包托办V21·指纹备货中枢Pro",
+  "version": "21.0.30",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.30(反馈学习+TFIDF·深度优化)· 包托办科技出品",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "sidePanel",
+    "tabs",
+    "webNavigation",
+    "alarms",
+    "storage",
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "action": {
+    "default_title": "V21备货中枢"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/btb-16.png",
+    "48": "icons/btb-48.png",
+    "128": "icons/btb-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.dgjapp.com/*"
+      ],
+      "js": [
+        "dgj-api-capture.js",
+        "dgj-image-fetcher.js",
+        "dgj-api-probe.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

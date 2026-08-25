@@ -1,0 +1,17 @@
+.DS_Store
+.v20*
+.20*
+node_modules/
+*.tar.gz
+backups/
+*.backup
+*.bak*
+sidepanel.js.backup*
+sidepanel.js.bak*
+sidepanel.js.current
+sidepanel*.bak*
+sidepanel*.backup*
+sidepanel 2.js
+sidepanel.js 2*
+sidepanel.js.pre*
+sidepanel.js.bak*
