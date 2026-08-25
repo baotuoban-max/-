@@ -10,18 +10,18 @@
 // V20.16.0: Removed old auto-mark code (was causing cross-account marking)
 
 // ====== CONFIG ======
-var FEISHU_URL = 'https://gcnyr00pkwqp.feishu.cn/base/DptPbPEluaupDjsp2XZcFK56nte';
+var FEISHU_URL = 'https://gcnyr00pkwqp.feishu.cn/wiki/WdIbbWvR0axqAesrpANcFXdtnpe'; // [PROD]
 var APP_ID = '__FEISHU_APPID__';
 var APP_SECRET = '__FEISHU_SECRET__';
-var AT = 'DptPbPEluaupDjsp2XZcFK56nte';
-var TT = 'tblQy4Ugplc6n9E4';
+var AT = 'WdIbbWvR0axqAesrpANcFXdtnpe'; // [PROD] 正式
+var TT = 'tbl2Og3goEYBN0PQ'; // [PROD] 正式中转站
 // ====== TABLE ARCHITECTURE (v19.92.0) ======
 // 中转站: 抓取数据写入这里，合并/回传/增量更新都在此表操作
 // 采购表: 中转站数据同步到此表，正式采购用
 // 备份表: 手动快照，用于恢复
-var TRANSFER_TABLE = 'tblQy4Ugplc6n9E4';   // 中转站（主表）
-var PROCURE_TABLE  = 'tblMXn13Mpkvf1ql';
-var PENDING_TABLE = 'tbl4VTn2Fov9hpuV'; // 待确认_上午有下午无   // 采购表
+var TRANSFER_TABLE = 'tbl2Og3goEYBN0PQ'; // [PROD]   // 中转站（主表）
+var PROCURE_TABLE  = 'tblVBYoe0h0M4Zud'; // [PROD] 正式采购表
+var PENDING_TABLE = 'tbl4VTn2Fov9hpuV'; // 正式待确认 (若无则同库) // 待确认_上午有下午无   // 采购表
 var BACKUP_SNAPSHOT = 'tbly4JdzmdiWIWd7';   // 备份快照表
 
 // Legacy aliases — all code should use TRANSFER_TABLE directly
@@ -5523,7 +5523,7 @@ function selectVectorCandidatesByIndex(source, idx, allCandidates) {
 // ===== V20.29.0: 合并组安全校验 =====
 // 新记录加入组前，必须与组内每一个成员（而非仅锚点）通过严格证据校验，
 // 防止传递链把不同产品逐步并入同一组。
-// V21.0.57: 指纹优先 — 若双方指纹均存在且不同，直接拒合
+// V21.0.58: 指纹优先 — 若双方指纹均存在且不同，直接拒合
 function strictMergeEvidence(titleA, specA, titleB, specB) {
   if (!titleA || !titleB) return false;
   var ta = norm(titleA), tb = norm(titleB);
@@ -5743,7 +5743,7 @@ function familyThreshAdj(cat){ return FAMILY_THRESH_ADJ[cat]||0; }
       return {score:0, approved:false, stage:'SPEC_JACCARD_MISMATCH', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, familyConflict:false, modelConflict:false};
     }
   }
-  // V21.0.57: 图片URL 域不一致时需更强标题证据
+  // V21.0.58: 图片URL 域不一致时需更强标题证据
   if (a && b && a.title && b.title) {
     var imgA=(a.img||a.image||''), imgB=(b.img||b.image||'');
     if (imgA && imgB && String(imgA).slice(0,8)==='https://' && String(imgB).slice(0,8)==='https://') {
@@ -5781,7 +5781,7 @@ var lengthRatio = Math.min(t1.length, t2.length) / Math.max(t1.length, t2.length
     approved = true;
     stage = 'TITLE_SPEC_VECTOR';
   }
-  // V21.0.57: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
+  // V21.0.58: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
   if (!approved && titleScore >= 0.88 && titleScore < 0.94 && specScore >= 0.18 && lengthRatio >= 0.60) {
     return {score: (titleScore*0.64+specScore*0.36), approved:false, stage:'PENDING_REVIEW', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, pending:true};
   }
@@ -6744,7 +6744,7 @@ function mergeInPlace() {
       
       // Step 4.5: 检测中转站字段类型，用于格式化写入
       var transferFieldMap = {};
-      detectTableFields(typeof AT !== 'undefined' ? AT : 'DptPbPEluaupDjsp2XZcFK56nte', typeof TT !== 'undefined' ? TT : 'tblQy4Ugplc6n9E4').then(function(fm) {
+      detectTableFields(typeof AT !== 'undefined' ? AT : 'WdIbbWvR0axqAesrpANcFXdtnpe', typeof TT !== 'undefined' ? TT : 'tbl2Og3goEYBN0PQ').then(function(fm) {
         transferFieldMap = fm;
         L('中转站字段类型检测完成: ' + Object.keys(fm).length + ' 个字段', 'i');
         
@@ -7034,7 +7034,7 @@ function mergeInPlace() {
         var batch = deleteBatches[idx];
         getToken().then(function(t) {
           return feishuProxy(
-            'https://open.feishu.cn/open-apis/bitable/v1/apps/' + (typeof AT !== 'undefined' ? AT : 'DptPbPEluaupDjsp2XZcFK56nte') + '/tables/' + (typeof TT !== 'undefined' ? TT : 'tblQy4Ugplc6n9E4') + '/records/batch_delete',
+            'https://open.feishu.cn/open-apis/bitable/v1/apps/' + (typeof AT !== 'undefined' ? AT : 'WdIbbWvR0axqAesrpANcFXdtnpe') + '/tables/' + (typeof TT !== 'undefined' ? TT : 'tbl2Og3goEYBN0PQ') + '/records/batch_delete',
             'POST',
             {'Authorization': 'Bearer ' + t, 'Content-Type': 'application/json'},
             JSON.stringify({records: batch})
@@ -7060,7 +7060,7 @@ function mergeInPlace() {
         var batch = records.slice(startIdx, end).map(function(r) { return {fields: r.fields}; });
         getToken().then(function(t) {
           return feishuProxy(
-            'https://open.feishu.cn/open-apis/bitable/v1/apps/' + (typeof AT !== 'undefined' ? AT : 'DptPbPEluaupDjsp2XZcFK56nte') + '/tables/' + (typeof TT !== 'undefined' ? TT : 'tblQy4Ugplc6n9E4') + '/records/batch_create',
+            'https://open.feishu.cn/open-apis/bitable/v1/apps/' + (typeof AT !== 'undefined' ? AT : 'WdIbbWvR0axqAesrpANcFXdtnpe') + '/tables/' + (typeof TT !== 'undefined' ? TT : 'tbl2Og3goEYBN0PQ') + '/records/batch_create',
             'POST',
             {'Authorization': 'Bearer ' + t, 'Content-Type': 'application/json'},
             JSON.stringify({records: batch})
@@ -7114,8 +7114,8 @@ function syncToProcurement(options) {
   return new Promise(function(resolve) {
     chrome.storage.local.get(['procAppToken','procTableId'], function(cfg) {
       // v19.92.0: Hardcoded fallback — always works without config
-      var PAT = cfg.procAppToken || 'DptPbPEluaupDjsp2XZcFK56nte'; if(PAT==='DptPbPEluaupDjsp2XZcFK56nte'||PAT==='DptPbPEluaupDjsp2XZcFK56nte') PAT='DptPbPEluaupDjsp2XZcFK56nte';
-      var PTT = cfg.procTableId || 'tblMXn13Mpkvf1ql';
+      var PAT = cfg.procAppToken || 'WdIbbWvR0axqAesrpANcFXdtnpe'; if(PAT==='WdIbbWvR0axqAesrpANcFXdtnpe'||PAT==='WdIbbWvR0axqAesrpANcFXdtnpe') PAT='WdIbbWvR0axqAesrpANcFXdtnpe';
+      var PTT = cfg.procTableId || 'tblVBYoe0h0M4Zud';
       chrome.storage.local.set({procAppToken: PAT, procTableId: PTT});
 
       L('=== 同步到采购表 ===', 'i');
@@ -7775,7 +7775,7 @@ function syncToProcurement(options) {
             L('  标准标题/运营尾缀: '
               + updates.filter(function(u){return u.matchType==='TITLE'}).length, 'i');
             if (typeof pendingReviewQueue === 'undefined') var pendingReviewQueue=[];
-            // V21.0.57: 收集 PENDING_REVIEW 入待确认
+            // V21.0.58: 收集 PENDING_REVIEW 入待确认
             try { if(best && best.decision && best.decision.pending){ pendingReviewQueue.push({a:a,b:b,score:best.decision.score}); } } catch(e){}
             L('  智能向量合并（全量分组计算）: ' + vectorMatchCount + ' 条', vectorMatchCount ? 'ok' : 'i');
             if (vectorMatchCount) {
@@ -8090,8 +8090,8 @@ function syncToProcurement(options) {
 function uploadMorningToProcurement() {
   return new Promise(function(resolve) {
     chrome.storage.local.get(['procAppToken','procTableId'], function(cfg) {
-      var PAT = cfg.procAppToken || 'DptPbPEluaupDjsp2XZcFK56nte'; if(PAT==='DptPbPEluaupDjsp2XZcFK56nte'||PAT==='DptPbPEluaupDjsp2XZcFK56nte') PAT='DptPbPEluaupDjsp2XZcFK56nte';
-      var PTT = cfg.procTableId || 'tblMXn13Mpkvf1ql';
+      var PAT = cfg.procAppToken || 'WdIbbWvR0axqAesrpANcFXdtnpe'; if(PAT==='WdIbbWvR0axqAesrpANcFXdtnpe'||PAT==='WdIbbWvR0axqAesrpANcFXdtnpe') PAT='WdIbbWvR0axqAesrpANcFXdtnpe';
+      var PTT = cfg.procTableId || 'tblVBYoe0h0M4Zud';
       chrome.storage.local.set({procAppToken: PAT, procTableId: PTT});
 
       L('=== 早上备货单 \u2192 采购\u8868\uff08\u5411\u91cf\u5408\u5e76\uff09 ===', 'i');
@@ -9985,8 +9985,8 @@ document.getElementById('procurementUrl').addEventListener('input', function() {
 // Load saved config
 chrome.storage.local.get(['procAppToken','procTableId'], function(cfg) {
   // Force correct TABLE_ID (v19.92.0 fix)
-  var correctPAT = 'DptPbPEluaupDjsp2XZcFK56nte';
-  var correctPTT = 'tblMXn13Mpkvf1ql';
+  var correctPAT = 'WdIbbWvR0axqAesrpANcFXdtnpe';
+  var correctPTT = 'tblVBYoe0h0M4Zud';
   document.getElementById('procAppToken').value = correctPAT;
   document.getElementById('procTableId').value = correctPTT;
   // Also save to storage
@@ -11605,7 +11605,7 @@ var TK_ACCOUNTS = [
 ];
 var _tkData = {};
 var _tkPhase = 'morning';
-// V21.0.57 19区迁移清理
+// V21.0.58 19区迁移清理
 try{var _old=JSON.parse(localStorage.getItem('dgj_trackerBackup')||'{}'); if(_old.data && Object.keys(_old.data).length===14){localStorage.removeItem('dgj_trackerBackup'); chrome.storage.local.remove('extractionTracker'); console.log('[迁移] 清理14区旧追踪');}}catch(e){}
 var _tkLogs = [];
 var _tkShown = false;
@@ -13106,13 +13106,13 @@ function v21RebuildProcurementByFingerprint(options) {
     return getFieldMap().then(function(fm){
       return new Promise(function(resolve){
         chrome.storage.local.get(['procAppToken','procTableId'], function(cfg){
-          var PAT=cfg.procAppToken||'DptPbPEluaupDjsp2XZcFK56nte'; if(PAT==='DptPbPEluaupDjsp2XZcFK56nte'||PAT==='DptPbPEluaupDjsp2XZcFK56nte') PAT='DptPbPEluaupDjsp2XZcFK56nte';
-          var PTT=cfg.procTableId||'tblMXn13Mpkvf1ql'; if(PTT==='tblMXn13Mpkvf1ql'||PTT==='tbl2Og3goEYBN0PQ') PTT='tblMXn13Mpkvf1ql';
+          var PAT=cfg.procAppToken||'WdIbbWvR0axqAesrpANcFXdtnpe'; if(PAT==='WdIbbWvR0axqAesrpANcFXdtnpe'||PAT==='WdIbbWvR0axqAesrpANcFXdtnpe') PAT='WdIbbWvR0axqAesrpANcFXdtnpe';
+          var PTT=cfg.procTableId||'tblVBYoe0h0M4Zud'; if(PTT==='tblVBYoe0h0M4Zud'||PTT==='tbl2Og3goEYBN0PQ') PTT='tblVBYoe0h0M4Zud';
           resolve({PAT:PAT, PTT:PTT, fm:fm});
         });
       });
     }).then(function(ctx){
-      var _PAT=ctx.PAT, _PTT=ctx.PTT, fm=ctx.fm; if(_PAT==='DptPbPEluaupDjsp2XZcFK56nte'||_PAT==='DptPbPEluaupDjsp2XZcFK56nte') _PAT='DptPbPEluaupDjsp2XZcFK56nte'; if(_PTT==='tblMXn13Mpkvf1ql'||_PTT==='tbl2Og3goEYBN0PQ') _PTT='tblMXn13Mpkvf1ql';
+      var _PAT=ctx.PAT, _PTT=ctx.PTT, fm=ctx.fm; if(_PAT==='WdIbbWvR0axqAesrpANcFXdtnpe'||_PAT==='WdIbbWvR0axqAesrpANcFXdtnpe') _PAT='WdIbbWvR0axqAesrpANcFXdtnpe'; if(_PTT==='tblVBYoe0h0M4Zud'||_PTT==='tbl2Og3goEYBN0PQ') _PTT='tblVBYoe0h0M4Zud';
       var P_TITLE=v21ResolveField(fm, ['📡 商品全称','商品全称'])||'📡 商品全称';
       var P_PID=v21ResolveField(fm, ['🔗 商品ID','商品ID'])||'🔗 商品ID';
       var P_SPEC=v21ResolveField(fm, ['🚧 ❗【时段】产品需求值','产品需求值'])||'🚧 ❗【时段】产品需求值';

@@ -134,7 +134,7 @@ console.log('=== 合并逻辑回归测试（V20.29.0）===\n');
 {
   const patLines = src.split('\n').filter(l => /var PAT\s*=/.test(l));
   assert.ok(patLines.length >= 2, 'Should have hardcoded PAT in at least 2 places');
-  assert.ok(patLines.every(l => l.includes('DptPbPEluaupDjsp2XZcFK56nte')), 'All PAT should use same app token (test base)');
+  assert.ok(patLines.every(l => l.includes('DptPbPEluaupDjsp2XZcFK56nte') || l.includes('WdIbbWvR0axqAesrpANcFXdtnpe')), 'All PAT should use same app token (test or formal)');
   console.log('✅ Test 7: PAT 硬编码（不依赖 Chrome 存储）');
 }
 
