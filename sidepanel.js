@@ -5565,7 +5565,7 @@ try {
   var _fb = localStorage.getItem('mergeFeedback_v21');
   if(_fb){ var fb=JSON.parse(_fb); (fb.corrections||[]).forEach(function(c){ var fam=c.family||'unknown'; FEEDBACK_THRESH_ADJ[fam]=(FEEDBACK_THRESH_ADJ[fam]||0)+0.015; }); }
 } catch(e){}
-function getFamilyAdj(fam){ return FEEDBACK_THRESH_ADJ[fam]||0; }
+function getFamilyAdj(fam){ var base=FEEDBACK_THRESH_ADJ[fam]||0; if(fam==='glove'||fam==='tape') base+=0.02; return base; }
 
 function procurementVectorScore(a, b, corpusStats) {
   var t1 = norm((a && a.title) || ''), t2 = norm((b && b.title) || '');
@@ -5731,9 +5731,12 @@ function procurementVectorScore(a, b, corpusStats) {
     var sa=(a && a.spec)||'', sb=(b && b.spec)||'';
     var packRe=/(\d+\s*(?:个|只|支|卷|套|包|盒|箱|袋|片|张|米|cm|mm|寸|英寸)|\d+[*x×]\d+|[SsMLXL]{1,3})/g;
     var pa=(sa.match(packRe)||[]).map(function(s){return s.replace(/\s+/g,'')}), pb=(sb.match(packRe)||[]).map(function(s){return s.replace(/\s+/g,'')});
-    var shared=false; for(var pi=0; pi<pa.length; pi++){ if(pb.indexOf(pa[pi])>=0){ shared=true; break; } }
-    if (pa.length && pb.length && !shared && specScore < 0.35) {
-      return {score:0, approved:false, stage:'SPEC_FINGERPRINT_MISMATCH', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, familyConflict:false, modelConflict:false};
+    var setA={}, setB={}; pa.forEach(function(x){setA[x]=1}); pb.forEach(function(x){setB[x]=1});
+    var inter=0, uni=0; var keys={}; pa.forEach(function(x){keys[x]=1}); pb.forEach(function(x){keys[x]=1});
+    Object.keys(keys).forEach(function(k){ var aHas=!!setA[k], bHas=!!setB[k]; if(aHas&&bHas) inter++; uni++; });
+    var jacc=uni? inter/uni : 0;
+    if (jacc < 0.25 && specScore < 0.40) {
+      return {score:0, approved:false, stage:'SPEC_JACCARD_MISMATCH', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, familyConflict:false, modelConflict:false};
     }
   }
   var lengthRatio = Math.min(t1.length, t2.length) / Math.max(t1.length, t2.length);
@@ -5764,7 +5767,7 @@ function procurementVectorScore(a, b, corpusStats) {
     approved = true;
     stage = 'TITLE_SPEC_VECTOR';
   }
-  // V21.0.32: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
+  // V21.0.33: 边际区 0.88-0.94 不自动合，入待确认（宁可漏合不误合）
   if (!approved && titleScore >= 0.88 && titleScore < 0.94 && specScore >= 0.18 && lengthRatio >= 0.60) {
     return {score: (titleScore*0.64+specScore*0.36), approved:false, stage:'PENDING_REVIEW', titleScore:titleScore, specScore:specScore, lengthRatio:lengthRatio, pending:true};
   }
@@ -7758,7 +7761,7 @@ function syncToProcurement(options) {
             L('  标准标题/运营尾缀: '
               + updates.filter(function(u){return u.matchType==='TITLE'}).length, 'i');
             if (typeof pendingReviewQueue === 'undefined') var pendingReviewQueue=[];
-            // V21.0.32: 收集 PENDING_REVIEW 入待确认
+            // V21.0.33: 收集 PENDING_REVIEW 入待确认
             try { if(best && best.decision && best.decision.pending){ pendingReviewQueue.push({a:a,b:b,score:best.decision.score}); } } catch(e){}
             L('  智能向量合并（全量分组计算）: ' + vectorMatchCount + ' 条', vectorMatchCount ? 'ok' : 'i');
             if (vectorMatchCount) {
