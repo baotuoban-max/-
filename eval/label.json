@@ -22,5 +22,45 @@
     "specB": "收纳箱;1",
     "label": 0,
     "note": "category conflict storage_general vs shoe_storage"
+  },
+  {
+    "titleA": "不锈钢厨房剪刀 多功能剪 5合1",
+    "specA": "5合1;1",
+    "titleB": "不锈钢厨房剪刀 家用剪刀 大号",
+    "specB": "大号;1",
+    "label": 1,
+    "note": "same scissors different spec wording -> merge"
+  },
+  {
+    "titleA": "一次性马桶刷 12个头 替换头",
+    "specA": "12个头;12",
+    "titleB": "马桶刷 替换头 12个装",
+    "specB": "12个装;12",
+    "label": 1,
+    "note": "same refill heads"
+  },
+  {
+    "titleA": "手机支架 桌面支架 可折叠",
+    "specA": "可折叠;1",
+    "titleB": "平板支架 懒人支架 落地款",
+    "specB": "落地款;1",
+    "label": 0,
+    "note": "phone vs tablet different family"
+  },
+  {
+    "titleA": "儿童玩具 积木 100粒装",
+    "specA": "100粒;100",
+    "titleB": "儿童玩具 拼图 100片装",
+    "specB": "100片;100",
+    "label": 0,
+    "note": "same category but different product"
+  },
+  {
+    "titleA": "帆布收纳箱 30L 大号",
+    "specA": "30L;1",
+    "titleB": "帆布收纳箱 30L 大号 加厚款",
+    "specB": "30L 加厚;1",
+    "label": 1,
+    "note": "same storage box thick variant"
   }
 ]
