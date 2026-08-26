@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.91",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.91(回退可显示·修复纯白)· 包托办科技出品",
+  "version": "21.0.92",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.92(卡片排版统一·保显示)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 91 修复纯白"
+    "default_title": "V21 92 卡片排版"
   },
   "background": {
     "service_worker": "background.js"
