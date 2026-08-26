@@ -21,7 +21,7 @@ var TT = 'tbl2Og3goEYBN0PQ'; // [PROD] 正式中转站
 // 备份表: 手动快照，用于恢复
 var TRANSFER_TABLE = 'tbl2Og3goEYBN0PQ'; // [PROD]   // 中转站（主表）
 var PROCURE_TABLE  = 'tblVBYoe0h0M4Zud'; // [PROD] 正式采购表
-var PENDING_TABLE = 'tbl4VTn2Fov9hpuV'; // 正式待确认 (若无则同库) // 待确认_上午有下午无   // 采购表
+var PENDING_TABLE = 'tbltKBF4cbXWaN0q'; // 正式待确认_正式库 (若无则同库) // 待确认_上午有下午无   // 采购表
 var BACKUP_SNAPSHOT = 'tbly4JdzmdiWIWd7';   // 备份快照表
 
 // Legacy aliases — all code should use TRANSFER_TABLE directly
