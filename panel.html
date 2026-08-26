@@ -31,7 +31,7 @@
 }
 html,body{height:100%;overflow:hidden}
 /* Type polish */
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--w);-webkit-font-smoothing:antialiased;font-size:13px;line-height:1.5}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#f5f7fb;color:#1d1d1f;-webkit-font-smoothing:antialiased,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--w);-webkit-font-smoothing:antialiased;font-size:13px;line-height:1.5}
 
 /* ===== AMBIENT ===== */
 .amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -53,7 +53,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;b
 .noise{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.015;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
 
 /* Header polish */
-.app-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(135deg, rgba(245,158,11,.12), rgba(245,158,11,.04));border-bottom:1px solid rgba(245,158,11,.15);backdrop-filter:blur(18px)}
+.app-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(0,0,0,.06);backdrop-filter:blur(20px);backdrop-filter:blur(18px)}
 .app-header .brand{display:flex;align-items:center;gap:10px}
 .app-header .logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#fbbf24);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 4px 12px rgba(245,158,11,.3)}
 /* ===== LAYOUT ===== */
@@ -162,7 +162,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;b
 /* ===== COLLAPSIBLE CARDS ===== */
 .card{transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-color .2s;}
 .card:hover{transform:translateY(-1px);box-shadow:var(--shadow), var(--shadow-glow);}
-.card{margin:8px 10px 0;border-radius:var(--R);background:rgba(255,255,255,.05);backdrop-filter:blur(48px) saturate(1.8);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.06);overflow:hidden;transition:all .25s var(--ease);position:relative}
+.card{margin:8px 10px 0;border-radius:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(28px) saturate(1.8);-webkit-backdrop-filter:blur(28px) saturate(1.8);border:1px solid rgba(0,0,0,.06);overflow:hidden;transition:all .25s var(--ease);position:relative;box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .card::before{content:'';position:absolute;inset:0;border-radius:var(--R);padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 40%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .card summary{display:flex;align-items:center;gap:10px;padding:11px 12px;cursor:pointer;list-style:none;user-select:none;transition:background .2s}
 .card summary::-webkit-details-marker{display:none}
@@ -1167,7 +1167,7 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
 
 <div id="apple-ver-banner" style="margin:0 0 12px 0;padding:10px 14px;border-radius:16px;background:rgba(0,122,255,0.08);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(0,122,255,0.14);display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,SF Pro Display,sans-serif">
 <span style="width:8px;height:8px;border-radius:50%;background:#0071e3;box-shadow:0 0 8px rgba(0,122,255,0.5)"></span>
-<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.79 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
+<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.80 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
 <span style="margin-left:auto;font-size:10px;color:#6e6e73">明日8点就绪</span>
 </div>
 
