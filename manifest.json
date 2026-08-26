@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.87",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.87(日志/卡片边框Apple·保显示)· 包托办科技出品",
+  "version": "21.0.88",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.88(版本显示修复·全Apple蓝·19区)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 87 日志边框"
+    "default_title": "V21 88 版本修复"
   },
   "background": {
     "service_worker": "background.js"
