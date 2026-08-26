@@ -8562,24 +8562,23 @@ function returnToFeishu(hasAttach, options) {
             var zone = '';
             try {
               var els = document.querySelectorAll('span, a, div, button, li, [role="tab"]');
-              for (var i = 0; i < els.length; i++) {
-                var t = els[i].textContent.trim();
-                if (t !== '一区' && t !== '二区') continue;
-                var el = els[i];
-                var active = el.classList.contains('is-active') || el.classList.contains('active') || el.classList.contains('switch-active')
-                  || el.classList.contains('selected') || el.getAttribute('aria-selected') === 'true'
-                  || el.classList.contains('current') || el.classList.contains('cur')
-                  || window.getComputedStyle(el).fontWeight >= 700;
-                if (!active && el.parentElement) {
-                  var p = el.parentElement;
-                  active = p.classList.contains('is-active') || p.classList.contains('active') || p.classList.contains('selected');
+              // 直查 switch-active 为准
+              try {
+                var sa = document.querySelector('span.switch-active');
+                if (sa) {
+                  var st = (sa.textContent||'').trim();
+                  if (st === '一区' || st === '二区') { zone = st; }
                 }
-                if (!active && el.parentElement && el.parentElement.parentElement) {
-                  var p2 = el.parentElement.parentElement;
-                  active = p2.classList.contains('is-active') || p2.classList.contains('active');
+              } catch(e){}
+              if (!zone) {
+                for (var i = 0; i < els.length; i++) {
+                  var t = els[i].textContent.trim();
+                  if (t !== '一区' && t !== '二区') continue;
+                  var el = els[i];
+                  var active = el.classList.contains('switch-active');
+                  if (!active) { try { if (window.getComputedStyle(el).color === 'rgb(8, 136, 255)') active = true; } catch(e){} }
+                  if (active) { zone = t; break; }
                 }
-                if (!active) { try { if (window.getComputedStyle(el).color === 'rgb(8, 136, 255)') active = true; } catch(e){} }
-                if (active) { zone = t; break; }
               }
             } catch(e) {}
             if (zone) {
@@ -9408,24 +9407,23 @@ function scrapeAndUpload(hasAttach) {
             var zone = '';
             try {
               var els = document.querySelectorAll('span, a, div, button, li, [role="tab"]');
-              for (var i = 0; i < els.length; i++) {
-                var t = els[i].textContent.trim();
-                if (t !== '一区' && t !== '二区') continue;
-                var el = els[i];
-                var active = el.classList.contains('is-active') || el.classList.contains('active') || el.classList.contains('switch-active')
-                  || el.classList.contains('selected') || el.getAttribute('aria-selected') === 'true'
-                  || el.classList.contains('current') || el.classList.contains('cur')
-                  || window.getComputedStyle(el).fontWeight >= 700;
-                if (!active && el.parentElement) {
-                  var p = el.parentElement;
-                  active = p.classList.contains('is-active') || p.classList.contains('active') || p.classList.contains('selected');
+              // 直查 switch-active 为准
+              try {
+                var sa = document.querySelector('span.switch-active');
+                if (sa) {
+                  var st = (sa.textContent||'').trim();
+                  if (st === '一区' || st === '二区') { zone = st; }
                 }
-                if (!active && el.parentElement && el.parentElement.parentElement) {
-                  var p2 = el.parentElement.parentElement;
-                  active = p2.classList.contains('is-active') || p2.classList.contains('active');
+              } catch(e){}
+              if (!zone) {
+                for (var i = 0; i < els.length; i++) {
+                  var t = els[i].textContent.trim();
+                  if (t !== '一区' && t !== '二区') continue;
+                  var el = els[i];
+                  var active = el.classList.contains('switch-active');
+                  if (!active) { try { if (window.getComputedStyle(el).color === 'rgb(8, 136, 255)') active = true; } catch(e){} }
+                  if (active) { zone = t; break; }
                 }
-                if (!active) { try { if (window.getComputedStyle(el).color === 'rgb(8, 136, 255)') active = true; } catch(e){} }
-                if (active) { zone = t; break; }
               }
             } catch(e) {}
             if (zone) {

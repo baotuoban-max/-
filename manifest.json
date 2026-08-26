@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.95",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.95(二区父框架去祖先误判·19区)· 包托办科技出品",
+  "version": "21.0.96",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.96(二区直查switch-active·不判祖先) 19区· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 95 二区祖先修复"
+    "default_title": "V21 96 二区直查"
   },
   "background": {
     "service_worker": "background.js"
