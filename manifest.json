@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.83",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.83(Apple重构·内置组件·显示正常·19区)· 包托办科技出品",
+  "version": "21.0.84",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.84(增量Apple·保显示·19区)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 83 Apple重构实装"
+    "default_title": "V21 84 增量Apple"
   },
   "background": {
     "service_worker": "background.js"
