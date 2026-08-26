@@ -8579,7 +8579,6 @@ function returnToFeishu(hasAttach, options) {
                   active = p2.classList.contains('is-active') || p2.classList.contains('active');
                 }
                 if (active) { zone = t; break; }
-                if (!zone) zone = t;
               }
             } catch(e) {}
             if (zone) {
@@ -9425,7 +9424,6 @@ function scrapeAndUpload(hasAttach) {
                   active = p2.classList.contains('is-active') || p2.classList.contains('active');
                 }
                 if (active) { zone = t; break; }
-                if (!zone) zone = t;
               }
             } catch(e) {}
             if (zone) {

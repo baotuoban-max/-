@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.78",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.78(待确认已建正式库·19区零缺陷)· 包托办科技出品",
+  "version": "21.0.79",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.79(二区检测修复·19区零缺陷)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 78 待确认归正式"
+    "default_title": "V21 79 二区修复"
   },
   "background": {
     "service_worker": "background.js"
