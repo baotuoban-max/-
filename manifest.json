@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.80",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.80(卡片重整·Apple·19区)· 包托办科技出品",
+  "version": "21.0.81",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.81(精简样式·Apple 통일·卡片修复)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 80 卡片重整"
+    "default_title": "V21 81 精简卡片"
   },
   "background": {
     "service_worker": "background.js"

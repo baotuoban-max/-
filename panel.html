@@ -13,25 +13,10 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 /* UX polish 21.0.23 */
-:root{
-  --bg:#1a1206;--bg2:#241a08;--bg3:#2e1f0a;--bg4:#3b2a0e;--bg5:#4a3512;
-  --ac:#f59e0b; /* V21.0.41 distinct amber */--ac2:#fbbf24;--ac3:#fde68a;--ac4:rgba(245,158,11,.08);--ac5:rgba(245,158,11,.14);--ac6:rgba(245,158,11,.22);
-  --gn:#00e59b;--gn2:#34ffc6;--gn3:#6fffd4;--gn4:rgba(0,229,155,.07);--gn5:rgba(0,229,155,.12);
-  --rd:#ff4d6a;--rd2:#ff6b82;--rd3:#ff7a8f;--rd4:rgba(255,77,106,.07);
-  --yw:#ffbe0b;--yw2:#ffd166;--yw3:#ffd166;--yw4:rgba(255,190,11,.07);--yw5:rgba(255,190,11,.12);
-  --bl:#3b9aff;--bl2:#6bb8ff;--bl3:#6bb8ff;--bl4:rgba(59,154,255,.07);--bl5:rgba(59,154,255,.12);
-  --w:#f0f2f8;--w2:#dfe3ed;--w3:#c8cdd8;
-  --g1:#b0b5c4;--g2:#8891a8;--g3:#5c6580;--g4:#3d4560;--g5:#252b40;--g6:#1a1f30;
-  --R:14px;--Rs:10px;--Rxs:7px;
-  --glass:rgba(255,255,255,.06);--glass2:rgba(255,255,255,.04);--glass3:rgba(255,255,255,.08);
-  --glass-b:rgba(255,255,255,.10);--glass-b2:rgba(255,255,255,.08);--glass-b3:rgba(255,255,255,.14);--glass-b4:rgba(255,255,255,.18);
-  --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.25),0 16px 48px rgba(0,0,0,.18);
-  --shadow-glow:0 0 20px rgba(245,158,11,.08),0 0 60px rgba(245,158,11,.04);
-  --ease:cubic-bezier(.16,1,.3,1);
-}
+/* removed dark root - light is authoritative */
 html,body{height:100%;overflow:hidden}
 /* Type polish */
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#f5f7fb;color:#1d1d1f;-webkit-font-smoothing:antialiased,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--w);-webkit-font-smoothing:antialiased;font-size:13px;line-height:1.5}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:#f5f7fb;color:#1d1d1f;-webkit-font-smoothing:antialiased;font-size:13px;line-height:1.5}
 
 /* ===== AMBIENT ===== */
 .amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -160,8 +145,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;b
 .tbl-meta .rec-cnt{font-family:'SF Mono','JetBrains Mono',Menlo,Monaco,Consolas,monospace;font-weight:700;color:var(--g2)}
 
 /* ===== COLLAPSIBLE CARDS ===== */
-.card{transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-color .2s;}
-.card:hover{transform:translateY(-1px);box-shadow:var(--shadow), var(--shadow-glow);}
+/* card hover unified below */
 .card{margin:8px 10px 0;border-radius:16px;background:rgba(255,255,255,.82);backdrop-filter:blur(28px) saturate(1.8);-webkit-backdrop-filter:blur(28px) saturate(1.8);border:1px solid rgba(0,0,0,.06);overflow:hidden;transition:all .25s var(--ease);position:relative;box-shadow:0 8px 24px rgba(0,0,0,.06)}
 .card::before{content:'';position:absolute;inset:0;border-radius:var(--R);padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 40%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .card summary{display:flex;align-items:center;gap:10px;padding:11px 12px;cursor:pointer;list-style:none;user-select:none;transition:background .2s}
@@ -567,8 +551,7 @@ body{
 .tbl{background:rgba(255,255,255,.78);border-color:rgba(86,99,123,.11);border-radius:16px}.tbl-top label,.tbl-top span,.tbl-meta{color:#8b96a9}
 .tbl select,.sett-r input,.sett-r textarea,.alarm-time{background:#f8f9fc;border-color:#dfe4ed;color:#27334a}
 .tbl select:focus,.sett-r input:focus,.alarm-time:focus{background:#fff;border-color:rgba(99,91,255,.45);box-shadow:0 0 0 3px rgba(99,91,255,.09)}
-.card{transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-color .2s;}
-.card:hover{transform:translateY(-1px);box-shadow:var(--shadow), var(--shadow-glow);}
+/* card hover unified below */
 .card{border-radius:16px}.card:hover{transform:translateY(-2px);border-color:rgba(99,91,255,.2);box-shadow:0 13px 30px rgba(56,64,98,.09)}
 .card summary:hover{background:rgba(99,91,255,.035)}.ct-title{color:#2b374e}.ct-desc{color:#8a95a8}.card-body{border-color:#e7eaf0}
 .btn{background:#f8f9fc;color:#4a566c;border-color:#e1e5ec}.btn:hover:not(:disabled){transform:translateY(-1px);background:#fff;box-shadow:0 8px 18px rgba(40,50,74,.08)}
@@ -1167,7 +1150,7 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
 
 <div id="apple-ver-banner" style="margin:0 0 12px 0;padding:10px 14px;border-radius:16px;background:rgba(0,122,255,0.08);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(0,122,255,0.14);display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,SF Pro Display,sans-serif">
 <span style="width:8px;height:8px;border-radius:50%;background:#0071e3;box-shadow:0 0 8px rgba(0,122,255,0.5)"></span>
-<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.80 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
+<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.81 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
 <span style="margin-left:auto;font-size:10px;color:#6e6e73">明日8点就绪</span>
 </div>
 
