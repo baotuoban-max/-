@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.85",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.85(头部Apple白·可见·19区)· 包托办科技出品",
+  "version": "21.0.86",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.86(统计/按钮Apple·保显示)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 85 头部可见"
+    "default_title": "V21 86 统计按钮"
   },
   "background": {
     "service_worker": "background.js"

@@ -49,7 +49,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;b
 .log-panel{flex-shrink:0;height:35vh;min-height:180px;max-height:50vh;margin:0 10px 8px;display:flex;flex-direction:column;border-radius:var(--R);background:rgba(255,255,255,.88);backdrop-filter:blur(48px) saturate(1.8);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,.06);overflow:hidden;position:relative;z-index:2}
 
 /* ===== GLASS CARD — 透明毛玻璃 ===== */
-.gl{background:rgba(255,255,255,.05);backdrop-filter:blur(48px) saturate(1.8) saturate(1.5);-webkit-backdrop-filter:blur(48px) saturate(1.8);border:1px solid rgba(255,255,255,.06);border-radius:var(--R);box-shadow:var(--shadow);position:relative;transition:all .25s var(--ease)}
+.gl{background:rgba(255,255,255,.86);backdrop-filter:blur(22px) saturate(1.8) saturate(1.5);-webkit-backdrop-filter:blur(48px) saturate(1.8);border:1px solid rgba(255,255,255,.06);border-radius:var(--R);box-shadow:var(--shadow);position:relative;transition:all .25s var(--ease)}
 .gl::before{content:'';position:absolute;inset:0;border-radius:var(--R);padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 40%,rgba(255,255,255,.03) 100%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 
 /* ===== HEADER ===== */
@@ -166,7 +166,7 @@ details[open] .ct-arrow{transform:rotate(180deg)}
 
 /* ===== BUTTONS ===== */
 .btns{display:flex;flex-direction:column;gap:5px}
-.btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border:1px solid rgba(255,255,255,.06);border-radius:var(--Rs);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s var(--ease);position:relative;overflow:hidden;letter-spacing:.01em;font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;white-space:nowrap;background:rgba(255,255,255,.02);color:var(--w2)}
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border:1px solid rgba(255,255,255,.06);border-radius:var(--Rs);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s var(--ease);position:relative;overflow:hidden;letter-spacing:.01em;font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;white-space:nowrap;background:#f8f9fc;color:#4a566c}
 .btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.3;cursor:not-allowed;transform:none}
@@ -1150,7 +1150,7 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
 
 <div id="apple-ver-banner" style="margin:0 0 12px 0;padding:10px 14px;border-radius:16px;background:rgba(0,122,255,0.08);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(0,122,255,0.14);display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,SF Pro Display,sans-serif">
 <span style="width:8px;height:8px;border-radius:50%;background:#0071e3;box-shadow:0 0 8px rgba(0,122,255,0.5)"></span>
-<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.85 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
+<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.86 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
 <span style="margin-left:auto;font-size:10px;color:#6e6e73">明日8点就绪</span>
 </div>
 
