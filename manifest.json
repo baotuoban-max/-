@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "包托办V21·指纹备货中枢Pro",
-  "version": "21.0.93",
-  "description": "包托办V21·指纹备货中枢Pro · V21.0.93(卡片彻底去重·排版统一·保显示)· 包托办科技出品",
+  "version": "21.0.94",
+  "description": "包托办V21·指纹备货中枢Pro · V21.0.94(二区switch-active修复·19区)· 包托办科技出品",
   "permissions": [
     "activeTab",
     "scripting",
@@ -20,7 +20,7 @@
     "default_path": "panel.html"
   },
   "action": {
-    "default_title": "V21 93 卡片去重"
+    "default_title": "V21 94 二区修复"
   },
   "background": {
     "service_worker": "background.js"

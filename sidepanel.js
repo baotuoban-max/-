@@ -790,7 +790,7 @@ function DGJ_SCRAPER(platformHint) {
           if (tText.indexOf('精选平台') >= 0 || tText.indexOf('精选') >= 0) {
             var childTabs = el.parentElement ? el.parentElement.querySelectorAll('[class*="tab"],[role="tab"],span,a') : [];
             for (var ct = 0; ct < childTabs.length; ct++) {
-              var ctActive = childTabs[ct].classList.contains('is-active') || childTabs[ct].classList.contains('active');
+              var ctActive = childTabs[ct].classList.contains('is-active') || childTabs[ct].classList.contains('active') || childTabs[ct].classList.contains('switch-active');
               if (!ctActive) continue;
               var ctText = childTabs[ct].textContent.trim();
               for (var sp2 = 0; sp2 < SUB_PLATFORMS.length; sp2++) {
@@ -829,7 +829,7 @@ function DGJ_SCRAPER(platformHint) {
         for (var si2 = 0; si2 < scanEls.length && si2 < 3000; si2++) {
           var sEl = scanEls[si2];
           // Must have explicit active class, not just styling
-          var hasActiveClass = sEl.classList.contains('is-active') || sEl.classList.contains('active') || sEl.classList.contains('selected') || sEl.getAttribute('aria-selected') === 'true';
+          var hasActiveClass = sEl.classList.contains('is-active') || sEl.classList.contains('active') || sEl.classList.contains('selected') || sEl.classList.contains('switch-active') || sEl.getAttribute('aria-selected') === 'true';
           if (!hasActiveClass) continue;
           var sText = sEl.textContent.trim();
           if (sText.length > 20 || sText.length < 2) continue;
@@ -861,7 +861,7 @@ function DGJ_SCRAPER(platformHint) {
           var pTabs = parentDoc.querySelectorAll('[class*="tab"],[role="tab"],.nav-item,.menu-item');
           for (var pti = 0; pti < pTabs.length; pti++) {
             var pEl = pTabs[pti];
-            var pActive = pEl.classList.contains('is-active') || pEl.classList.contains('active') || pEl.getAttribute('aria-selected') === 'true';
+            var pActive = pEl.classList.contains('is-active') || pEl.classList.contains('active') || pEl.classList.contains('switch-active') || pEl.getAttribute('aria-selected') === 'true';
             if (!pActive) continue;
             var pText = pEl.textContent.trim();
             if (pText.length > 30) continue;
@@ -928,7 +928,7 @@ function DGJ_SCRAPER(platformHint) {
           var zEl = zoneCandidates[zi];
           var zText = zEl.textContent.trim();
           if (zText !== '一区' && zText !== '二区') continue;
-          var zActive = zEl.classList.contains('is-active') || zEl.classList.contains('active') 
+          var zActive = zEl.classList.contains('is-active') || zEl.classList.contains('active') || zEl.classList.contains('switch-active') 
             || zEl.classList.contains('selected') || zEl.getAttribute('aria-selected') === 'true' 
             || zEl.classList.contains('is-checked') || zEl.classList.contains('checked')
             || zEl.classList.contains('current') || zEl.classList.contains('cur')
@@ -948,7 +948,7 @@ function DGJ_SCRAPER(platformHint) {
             var pEl = parentCandidates[pi];
             var pText = pEl.textContent.trim();
             if (pText.indexOf('一区') < 0 && pText.indexOf('二区') < 0) continue;
-            var pActive = pEl.classList.contains('is-active') || pEl.classList.contains('active') 
+            var pActive = pEl.classList.contains('is-active') || pEl.classList.contains('active') || pEl.classList.contains('switch-active') 
               || pEl.classList.contains('selected') || pEl.classList.contains('current')
               || pEl.getAttribute('aria-selected') === 'true';
             if (pActive) {
@@ -970,7 +970,7 @@ function DGJ_SCRAPER(platformHint) {
                 for (var iz = 0; iz < iframeZoneEls.length; iz++) {
                   var izText = iframeZoneEls[iz].textContent.trim();
                   if (izText !== '一区' && izText !== '二区') continue;
-                  var izActive = iframeZoneEls[iz].classList.contains('is-active') || iframeZoneEls[iz].classList.contains('active')
+                  var izActive = iframeZoneEls[iz].classList.contains('is-active') || iframeZoneEls[iz].classList.contains('active') || iframeZoneEls[iz].classList.contains('switch-active')
                     || iframeZoneEls[iz].classList.contains('selected') || iframeZoneEls[iz].getAttribute('aria-selected') === 'true';
                   if (izActive) { zoneStr = izText; break; }
                 }
@@ -1010,7 +1010,7 @@ function DGJ_SCRAPER(platformHint) {
                 for (var tj = 0; tj < tabItems.length; tj++) {
                   var tItemText = tabItems[tj].textContent.trim();
                   if (tItemText !== '一区' && tItemText !== '二区') continue;
-                  var tActive = tabItems[tj].classList.contains('is-active') || tabItems[tj].classList.contains('active') 
+                  var tActive = tabItems[tj].classList.contains('is-active') || tabItems[tj].classList.contains('active') || tabItems[tj].classList.contains('switch-active') 
                     || tabItems[tj].classList.contains('selected') || tabItems[tj].getAttribute('aria-selected') === 'true'
                     || tabItems[tj].classList.contains('current') || tabItems[tj].classList.contains('cur');
                   if (tActive) { zoneStr = tItemText; break; }
@@ -1103,7 +1103,7 @@ function DGJ_SCRAPER(platformHint) {
               // Check element AND its parent for active state
               // Zone tab structure: <div class="is-active"><span>一区</span></div>
               var pzEl = parentAll[pz];
-              var pzActive = pzEl.classList.contains('is-active') || pzEl.classList.contains('active')
+              var pzActive = pzEl.classList.contains('is-active') || pzEl.classList.contains('active') || pzEl.classList.contains('switch-active')
                 || pzEl.classList.contains('selected') || pzEl.getAttribute('aria-selected') === 'true'
                 || pzEl.classList.contains('is-checked') || pzEl.classList.contains('checked')
                 || pzEl.classList.contains('current') || pzEl.classList.contains('cur')
@@ -1111,12 +1111,12 @@ function DGJ_SCRAPER(platformHint) {
               // Also check parent container (2 levels up)
               if (!pzActive && pzEl.parentElement) {
                 var pp = pzEl.parentElement;
-                pzActive = pp.classList.contains('is-active') || pp.classList.contains('active')
+                pzActive = pp.classList.contains('is-active') || pp.classList.contains('active') || pp.classList.contains('switch-active')
                   || pp.classList.contains('selected') || pp.classList.contains('current');
               }
               if (!pzActive && pzEl.parentElement && pzEl.parentElement.parentElement) {
                 var pp2 = pzEl.parentElement.parentElement;
-                pzActive = pp2.classList.contains('is-active') || pp2.classList.contains('active')
+                pzActive = pp2.classList.contains('is-active') || pp2.classList.contains('active') || pp2.classList.contains('switch-active')
                   || pp2.classList.contains('selected');
               }
               console.log('[DGJ] Parent frame zone check: text=' + pzText + ' active=' + pzActive + ' classes=' + pzEl.className);
@@ -8566,18 +8566,19 @@ function returnToFeishu(hasAttach, options) {
                 var t = els[i].textContent.trim();
                 if (t !== '一区' && t !== '二区') continue;
                 var el = els[i];
-                var active = el.classList.contains('is-active') || el.classList.contains('active')
+                var active = el.classList.contains('is-active') || el.classList.contains('active') || el.classList.contains('switch-active') || el.classList.contains('dbNameSwitchActive')
                   || el.classList.contains('selected') || el.getAttribute('aria-selected') === 'true'
                   || el.classList.contains('current') || el.classList.contains('cur')
                   || window.getComputedStyle(el).fontWeight >= 700;
                 if (!active && el.parentElement) {
                   var p = el.parentElement;
-                  active = p.classList.contains('is-active') || p.classList.contains('active') || p.classList.contains('selected');
+                  active = p.classList.contains('is-active') || p.classList.contains('active') || p.classList.contains('selected') || p.classList.contains('switch-active') || p.classList.contains('dbNameSwitchActive');
                 }
                 if (!active && el.parentElement && el.parentElement.parentElement) {
                   var p2 = el.parentElement.parentElement;
-                  active = p2.classList.contains('is-active') || p2.classList.contains('active');
+                  active = p2.classList.contains('is-active') || p2.classList.contains('active') || p2.classList.contains('switch-active') || p2.classList.contains('dbNameSwitchActive');
                 }
+                if (!active) { try { if (window.getComputedStyle(el).color === 'rgb(8, 136, 255)') active = true; } catch(e){} }
                 if (active) { zone = t; break; }
               }
             } catch(e) {}
@@ -9411,18 +9412,19 @@ function scrapeAndUpload(hasAttach) {
                 var t = els[i].textContent.trim();
                 if (t !== '一区' && t !== '二区') continue;
                 var el = els[i];
-                var active = el.classList.contains('is-active') || el.classList.contains('active')
+                var active = el.classList.contains('is-active') || el.classList.contains('active') || el.classList.contains('switch-active') || el.classList.contains('dbNameSwitchActive')
                   || el.classList.contains('selected') || el.getAttribute('aria-selected') === 'true'
                   || el.classList.contains('current') || el.classList.contains('cur')
                   || window.getComputedStyle(el).fontWeight >= 700;
                 if (!active && el.parentElement) {
                   var p = el.parentElement;
-                  active = p.classList.contains('is-active') || p.classList.contains('active') || p.classList.contains('selected');
+                  active = p.classList.contains('is-active') || p.classList.contains('active') || p.classList.contains('selected') || p.classList.contains('switch-active') || p.classList.contains('dbNameSwitchActive');
                 }
                 if (!active && el.parentElement && el.parentElement.parentElement) {
                   var p2 = el.parentElement.parentElement;
-                  active = p2.classList.contains('is-active') || p2.classList.contains('active');
+                  active = p2.classList.contains('is-active') || p2.classList.contains('active') || p2.classList.contains('switch-active') || p2.classList.contains('dbNameSwitchActive');
                 }
+                if (!active) { try { if (window.getComputedStyle(el).color === 'rgb(8, 136, 255)') active = true; } catch(e){} }
                 if (active) { zone = t; break; }
               }
             } catch(e) {}
