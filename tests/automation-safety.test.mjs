@@ -7,7 +7,7 @@ const background = fs.readFileSync(new URL('../background.js', import.meta.url),
 const panel = fs.readFileSync(new URL('../panel.html', import.meta.url), 'utf8');
 const manifest = JSON.parse(fs.readFileSync(new URL('../manifest.json', import.meta.url), 'utf8'));
 
-assert.equal(manifest.version, '21.0.90');
+assert.equal(manifest.version, '21.0.91');
 assert.match(panel, /<script src="automation\.js"><\/script>/);
 assert.match(panel, /id="automationRunMorning"/);
 assert.match(panel, /id="automationDryRun"/);
