@@ -21,7 +21,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;b
 /* ===== AMBIENT ===== */
 .amb{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .orb{position:absolute;border-radius:50%;filter:blur(100px);will-change:transform}
-.o1{width:500px;height:500px;top:-200px;left:-120px;background:radial-gradient(circle,rgba(99,91,255,.14) 0%,transparent 70%);animation:oFloat 35s ease-in-out infinite}
+.o1{width:500px;height:500px;top:-200px;left:-120px;background:radial-gradient(circle,rgba(99,91,255,.10) 0%,transparent 70%);animation:oFloat 35s ease-in-out infinite}
 .o2{width:400px;height:400px;bottom:-160px;right:-100px;background:radial-gradient(circle,rgba(99,91,255,.07) 0%,transparent 70%);animation:oFloat 42s ease-in-out infinite reverse}
 .o3{width:320px;height:320px;top:40%;left:50%;background:radial-gradient(circle,rgba(255,190,11,.04) 0%,transparent 70%);animation:oFloat 50s ease-in-out infinite}
 @keyframes oFloat{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(20px,-15px) scale(1.04)}50%{transform:translate(-15px,12px) scale(.96)}75%{transform:translate(12px,18px) scale(1.02)}}
@@ -59,8 +59,8 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;b
 @keyframes icoShine{0%,100%{transform:translateX(-100%) rotate(45deg)}50%{transform:translateX(100%) rotate(45deg)}}
 .hdr-ico svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
 .hdr-r{flex:1;min-width:0}
-.hdr-n{font-size:15px;font-weight:800;letter-spacing:-.5px;display:flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--w) 0%,var(--g1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hdr-n .v{font-size:8.5px;font-weight:800;padding:2px 6px;border-radius:5px;background:rgba(124,92,252,.12);color:var(--ac3);border:1px solid rgba(124,92,252,.1);letter-spacing:.3px;-webkit-text-fill-color:var(--ac3)}
+/* dedup hdr-n removed */
+/* dedup v removed */
 .hdr-d{font-size:10px;color:var(--g3);font-weight:500;margin-top:1px;letter-spacing:.1px}
 .hdr-ver{font-size:9px;color:var(--g3);font-weight:500;display:flex;align-items:center;gap:6px;margin-top:3px;letter-spacing:.15px}
 .hdr-ver .ver-tag{font-size:8px;font-weight:800;padding:2px 6px;border-radius:4px;background:rgba(124,92,252,.08);color:var(--ac2);border:1px solid rgba(124,92,252,.1);font-family:"JetBrains Mono",monospace;letter-spacing:.3px;text-transform:uppercase}
@@ -403,8 +403,8 @@ body{
   background:linear-gradient(145deg,#5750ed,#796fff 58%,#59a7ff);
   box-shadow:0 10px 26px rgba(99,91,255,.28),inset 0 1px 0 rgba(255,255,255,.35);
 }
-.hdr-n{font-size:15px;color:var(--w);background:none;-webkit-text-fill-color:currentColor}
-.hdr-n .v{color:#574fdc;background:rgba(99,91,255,.09);border-color:rgba(99,91,255,.14);-webkit-text-fill-color:#574fdc}
+/* dedup hdr-n removed */
+/* dedup v removed */
 .hdr-d{color:#7f8aa0}.hdr-btn{background:#f7f8fc;border-color:#dfe4ed;color:#758198}
 .hdr-btn:hover{background:#fff;color:var(--ac);border-color:rgba(99,91,255,.25);box-shadow:0 8px 18px rgba(99,91,255,.12);transform:translateY(-1px)}
 .sts{margin-top:7px;padding:8px 11px;background:rgba(255,255,255,.7);box-shadow:none}
@@ -1076,14 +1076,14 @@ body.task-running .log-panel{position:relative;z-index:12;pointer-events:auto;bo
 
 <style id="v21-unify-42">
 /* V21.0.51 全量统一 · 指纹琥珀 */
-:root{ --ac:#0071e3; --ac2:#fbbf24; --ac3:#fde68a; --ac4:rgba(245,158,11,.10); --ac5:rgba(245,158,11,.18); --bg:#1a1206; --card:#ffffff; --cardB:#f1e6d0; --text:#1e293b; --muted:#64748b; }
+:root{ --ac:#0071e3; --ac2:#fbbf24; --ac3:#fde68a; --ac4:rgba(245,158,11,.10); --ac5:rgba(245,158,11,.18); --bg:#f5f7fb; --card:#ffffff; --cardB:#f1e6d0; --text:#1e293b; --muted:#64748b; }
 html,body{background:#fdf8ef!important}
 .amb .o1{background:radial-gradient(circle,rgba(245,158,11,.22) 0%,transparent 70%)!important}
 .amb .o2{background:radial-gradient(circle,rgba(99,91,255,.08) 0%,transparent 70%)!important}
 .hdr{background:#fff!important;border:1px solid #f1e6d0!important;box-shadow:0 8px 24px rgba(99,91,255,.10)!important}
 .hdr-ico{background:linear-gradient(135deg,#0071e3,#fbbf24)!important;border-color:#fde68a!important}
 .hdr-ico svg{stroke:#fff!important}
-.hdr-n{color:#1e293b!important}
+/* dedup hdr-n removed */
 .hdr-n .v{background:#0071e3!important;color:#fff!important;border-color:#0a84ff!important}
 .hdr-d{color:#92400e!important}
 .sts{background:#fffbeb!important;border-color:#fde68a!important}
@@ -1145,12 +1145,14 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
 .sec:hover{transform:translateY(-1px)}
 </style>
 <style id="apple-62-verify"> #apple-ver-banner::after{content:" ● 正式库连通";font-size:10px;color:#34c759;margin-left:6px}</style>
+
+<style>body{background:#f5f7fb!important;color:#1d1d1f!important}.app{background:#f5f7fb!important}.card,.hdr,.sts,.log-panel{background:rgba(255,255,255,.92)!important;border-color:rgba(99,91,255,.14)!important}</style>
 </head>
 <body>
 
 <div id="apple-ver-banner" style="margin:0 0 12px 0;padding:10px 14px;border-radius:16px;background:rgba(0,122,255,0.08);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(0,122,255,0.14);display:flex;align-items:center;gap:8px;font-family:-apple-system,BlinkMacSystemFont,SF Pro Display,sans-serif">
 <span style="width:8px;height:8px;border-radius:50%;background:#0071e3;box-shadow:0 0 8px rgba(0,122,255,0.5)"></span>
-<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.88 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
+<span style="font-size:12px;font-weight:700;color:#1d1d1f;letter-spacing:-0.01em">V21.0.89 · 正式库 · Apple 8点即用 · 19区 · 19区</span>
 <span style="margin-left:auto;font-size:10px;color:#6e6e73">明日8点就绪</span>
 </div>
 
@@ -1173,7 +1175,7 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
       <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
     </div>
     <div class="hdr-r">
-      <div class="hdr-n">AI 采购中枢 <span class="v" style="background:#0071e3;color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px;border:1px solid #0a84ff;box-shadow:0 2px 8px rgba(0,113,227,.3)">V21.0.88 · 指纹版</span></div>
+      <div class="hdr-n">AI 采购中枢 <span class="v" style="background:#0071e3;color:#fff;padding:2px 8px;border-radius:999px;margin-left:6px;border:1px solid #0a84ff;box-shadow:0 2px 8px rgba(0,113,227,.3)">V21.0.89 · 指纹版</span></div>
       <div class="hdr-d">FINGERPRINT OS · 指纹隔离 · 已回填1821实数</div>
       <div class="hdr-ver"><span class="ver-tag" id="pluginVersion">loading...</span><span class="ver-label">PLUGIN VERSION</span></div>
     </div>
@@ -1229,7 +1231,7 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
   </div>
 
   <!-- V21 Pro 健康看板 -->
-  <div style="margin:6px 10px;padding:6px 10px;border-radius:999px;background:#fffbeb;border:1px solid #fde68a;font-size:10px;color:#92400e;display:flex;justify-content:space-between;align-items:center"><span>🔶 V21.0.88 指纹版</span><span style="background:#0071e3;color:#fff;padding:2px 6px;border-radius:999px;font-weight:800">区分版</span></div>
+  <div style="margin:6px 10px;padding:6px 10px;border-radius:999px;background:#fffbeb;border:1px solid #fde68a;font-size:10px;color:#92400e;display:flex;justify-content:space-between;align-items:center"><span>🔶 V21.0.89 指纹版</span><span style="background:#0071e3;color:#fff;padding:2px 6px;border-radius:999px;font-weight:800">区分版</span></div>
   <div id="v21Health" style="margin:8px 10px;padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.78);border:1px solid rgba(86,99,123,.1);font-size:11px;line-height:1.5;color:#334155">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
       <span style="font-weight:700;color:#1e293b">V21 健康 · 19区验证</span>
@@ -1508,7 +1510,7 @@ html,body{background:#f5f5f7!important;background-image:radial-gradient(1200px 6
   </details>
 
   <!-- FOOTER -->
-  <div class="foot">包托办科技 · FINGERPRINT OS · V21.0.88 · 已区分</div>
+  <div class="foot">包托办科技 · FINGERPRINT OS · V21.0.89 · 已区分</div>
 
   <!-- LOG PANEL -->
   
